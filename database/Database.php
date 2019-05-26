@@ -54,5 +54,6 @@ abstract class Database implements DatabaseOperations {
         $statement = $this->pdo->prepare($sql);
         $statement->execute(['value' => $value]);
     }
+}
 
 ?>
