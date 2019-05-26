@@ -1,3 +1,4 @@
 <?php
-echo "Hello"
+require 'header.php';
+require 'footer.php';
 ?>
