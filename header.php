@@ -39,13 +39,23 @@
           </li>
           <li><h4>|</h4></li>
           <?php if (isset($_SESSION['userID'])): ?>
-            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'cart') ? ' active' : '' ?>">
+            <?php if ($_SESSION['role'] == "cust"): ?>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
               <a class="nav-link" href="cart.php"><b> Nákupní košík</b></a>
             </li>
-            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'cart') ? ' active' : '' ?>">
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
               <a class="nav-link" href="user_profile.php">Můj profil</a>
             </li>
-            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'logout') ? ' active' : '' ?>">
+            <?php endif; ?>
+            <?php if ($_SESSION['role'] == "adm"): ?>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
+              <a class="nav-link" href="#">Přidat produkt</a>
+            </li>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
+              <a class="nav-link" href="#">Správa uživatelů</a>
+            </li>
+            <?php endif; ?>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
               <a class="nav-link" href="logout.php"> Odhlášení</a>
             </li>
           <?php else: ?>

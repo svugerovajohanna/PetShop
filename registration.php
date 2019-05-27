@@ -118,6 +118,7 @@ if ($submittedForm) {
             }
             $_SESSION['userID'] = $user[0]['id'];
             $_SESSION['email'] = $user[0]['email'];
+            $_SESSION['role'] = $user[0]['role'];
         }
 
     }

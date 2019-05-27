@@ -28,6 +28,7 @@ if ($submittedForm) {
              }else{
                 $_SESSION['userID'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
                 header('Location: index.php'); //index.php?login
                 die();
              }

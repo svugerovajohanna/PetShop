@@ -107,11 +107,6 @@ $products = $statement->fetchAll();
                 <p class>Produkt není k dispozici.</p>
             <?php endif;?>
 
-            <?php foreach($dogIDs as $dogID){
-                echo $dogID;
-                }   
-            ?>
-
         </div> 
     </div>
   </div>
