@@ -5,6 +5,8 @@ require 'db.php';
 
 require 'header.php';
 
+
+
 //výběr kategorií pro kočku
 $sql = 'SELECT * FROM categories WHERE animal="cat"'; //ORDER BY name
 $statement = $categoriesDB->getPDO()->prepare($sql);
@@ -95,7 +97,7 @@ $products = $statement->fetchAll();
       <div class="card-footer text-center">
                 <!-- upravit pro různé role-->
             <?php if($product['stock']>0):?>
-                <button type="button" class="btn btn-secondary">Přidat do košíku</button>
+            <a href="./buy.php?product=<?php echo $product['product_id'] ?>"><button type="button" class="btn btn-secondary">Přidat do košíku</button></a>
             <?php endif;?>
             <?php if($product['stock']==0):?>
                 <p class>Produkt není k dispozici.</p>
