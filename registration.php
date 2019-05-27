@@ -116,7 +116,7 @@ if ($submittedForm) {
             if(!$user){
                 die('Při registraci nastala chyba');
             }
-            $_SESSION['userID'] = $user[0]['user_id'];
+            $_SESSION['userID'] = $user[0]['id'];
             $_SESSION['email'] = $user[0]['email'];
         }
 
