@@ -35,10 +35,7 @@
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#"><h5>Psy</h5></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><h5>Ostatní</h5></a>
+            <a class="nav-link" href="dogs.php"><h5>Psi</h5></a>
           </li>
           <li><h4>|</h4></li>
           <?php if (isset($_SESSION['userID'])): ?>

@@ -7,19 +7,19 @@ require 'header.php';
 
 
 
-//výběr kategorií pro kočku
-$sql = 'SELECT * FROM categories WHERE animal="cat"'; //ORDER BY name
+//výběr kategorií pro psa
+$sql = 'SELECT * FROM categories WHERE animal="dog"'; //ORDER BY name
 $statement = $categoriesDB->getPDO()->prepare($sql);
 $statement->execute();
 
 $categories = $statement->fetchAll();
 
 
-//uložení ID categorii koček 
-$categoryIDs=[];
+//uložení ID categorii psů
+$dogIDs=[];
 foreach($categories as $category){
-    $categoryID = $category['id'];
-    $categoryIDs[] = $categoryID; 
+    $dogID = $category['id'];
+    $dogIDs[] = $dogID; 
 }
 
 
@@ -46,7 +46,8 @@ if(@$_GET['category']) {
     $statement->execute();
 }
 else{ //všechny produkty, index
-    $idsForQuery= implode(',', $categoryIDs);
+
+    $idsForQuery= implode(',', $dogIDs);
 
     $count = $productsDB->getPDO()->query("SELECT COUNT(product_id) FROM products WHERE category IN ($idsForQuery)");
     $count = $count->fetchColumn();
@@ -65,7 +66,7 @@ $products = $statement->fetchAll();
 
 ?>
 <main class="container">
-<h2>Potřeby pro kočky</h2>
+<h2>Potřeby pro psy</h2>
 
 <div class="row">
 
@@ -73,9 +74,9 @@ $products = $statement->fetchAll();
 <div class="col-lg-3">
         <div class="list-group">
         <?php foreach($categories as $category): ?>
-            <a href="./index.php?category=<?php echo $category['id'];?>"class="list-group-item d-flex justify-content-between align-items-center"><?php echo $category['name'];?></a>
+            <a href="./dogs.php?category=<?php echo $category['id'];?>"class="list-group-item d-flex justify-content-between align-items-center"><?php echo $category['name'];?></a>
         <?php endforeach ?>
-        <a href="./index.php"class="list-group-item d-flex justify-content-between align-items-center">Všechny produkty</a>
+        <a href="./dogs.php"class="list-group-item d-flex justify-content-between align-items-center">Všechny produkty</a>
         </div>
 </div>
 
@@ -105,7 +106,11 @@ $products = $statement->fetchAll();
             <?php if($product['stock']==0):?>
                 <p class>Produkt není k dispozici.</p>
             <?php endif;?>
-            
+
+            <?php foreach($dogIDs as $dogID){
+                echo $dogID;
+                }   
+            ?>
 
         </div> 
     </div>
