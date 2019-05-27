@@ -30,16 +30,23 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="index.php"><h5>Kočky</h5>
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><h5>Psy</h5></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><h5>Ostatní</h5></a>
+          </li>
+          <li><h4>|</h4></li>
           <?php if (isset($_SESSION['userID'])): ?>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'cart') ? ' active' : '' ?>">
-              <a class="nav-link" href="cart.php"> <b>Nákupní košík</b></a>
+              <a class="nav-link" href="cart.php"><b> Nákupní košík</b></a>
             </li>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'logout') ? ' active' : '' ?>">
-              <a class="nav-link" href="logout.php"> <b>Odhlášení</b></a>
+              <a class="nav-link" href="logout.php"> Odhlášení</a>
             </li>
           <?php else: ?>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'login') ? ' active' : '' ?>">

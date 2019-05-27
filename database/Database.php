@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . '/db-config.php';
-require __DIR__ . '/DatabaseOperations.php';
+require_once __DIR__ . '/db-config.php';
+require_once __DIR__ . '/DatabaseOperations.php';
 
 abstract class Database implements DatabaseOperations {
     protected $pdo;
@@ -53,6 +53,10 @@ abstract class Database implements DatabaseOperations {
         $sql = 'DELETE FROM ' . $this->tableName . ' WHERE ' . $field . ' = :value';
         $statement = $this->pdo->prepare($sql);
         $statement->execute(['value' => $value]);
+    }
+
+    public function getPDO(){
+        return $this->pdo;
     }
 }
 
