@@ -67,7 +67,7 @@ if ($submittedForm) {
 
         <div class="form-group">
             <label>Heslo</label>
-            <input class="form-control" name="password" value="<?php echo @$password; ?>">
+            <input type="password" class="form-control" name="password" value="<?php echo @$password; ?>">
         </div>
 
         <button type="submit" class="btn btn-primary">Přihlaš mě!</button>

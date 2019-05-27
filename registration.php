@@ -182,13 +182,13 @@ if ($submittedForm) {
 
         <div class="form-group">
             <label>Heslo</label>
-            <input class="form-control" name="password" value="<?php echo @$password; ?>">
+            <input  type="password" class="form-control" name="password" value="<?php echo @$password; ?>">
             <small>Heslo musí obsahovat minimálně 8 znaků</small>
         </div>
 
         <div class="form-group">
             <label>Potvrďte heslo</label>
-            <input class="form-control" name="paswdConfirm" value="<?php echo @$paswdConfirm; ?>">
+            <input type="password" class="form-control" name="paswdConfirm" value="<?php echo @$paswdConfirm; ?>">
             <small>Zadejte heslo znovu pro potvrzení správnosti</small>
         </div>
 
