@@ -91,14 +91,18 @@ $products = $statement->fetchAll();
         <h5 class="card-title"><?php echo $product['price']; ?> Kč</h5>
         <p class="card-text small"><?php echo $product['description']; ?></p>
       </div>
-      <div class="card-footer">
-        <?php 
-            foreach($categoryIDs as $categoryID){
-                echo $categoryID;
-            }
-        
-        ?>
-      </div>
+      
+      <div class="card-footer text-center">
+                <!-- upravit pro různé role-->
+            <?php if($product['stock']>0):?>
+                <button type="button" class="btn btn-secondary">Přidat do košíku</button>
+            <?php endif;?>
+            <?php if($product['stock']==0):?>
+                <p class>Produkt není k dispozici.</p>
+            <?php endif;?>
+            
+
+        </div> 
     </div>
   </div>
   <?php endforeach ?>
@@ -106,17 +110,17 @@ $products = $statement->fetchAll();
     </div>
 </div>
 
-
+<div class="row">
     <ul class="pagination">	
-        <li>
+        
 			<?php for($i=1; $i<=ceil($count/6); $i++) { ?>
-
-				<a class="<?= $offset/6+1==$i ? "active" : ""  ?>" href="index.php?offset=<?= ($i-1)*6 ?>"><?= $i ?></a>
-			
-                <?php } ?>
-        </li>
+                <li class="page-item">
+				<a class="page-link <? $offset/6+1 == $i ? "active" : ""  ?>" href="index.php?offset=<?= ($i-1)*6 ?>"><?= $i ?></a>
+                </li>
+            <?php } ?>
+        
     </ul>
-
+</div>
 
 
 
