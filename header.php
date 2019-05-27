@@ -45,6 +45,9 @@
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'cart') ? ' active' : '' ?>">
               <a class="nav-link" href="cart.php"><b> Nákupní košík</b></a>
             </li>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'cart') ? ' active' : '' ?>">
+              <a class="nav-link" href="user_profile.php">Můj profil</a>
+            </li>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI'], 'logout') ? ' active' : '' ?>">
               <a class="nav-link" href="logout.php"> Odhlášení</a>
             </li>
