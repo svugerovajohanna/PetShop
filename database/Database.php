@@ -17,6 +17,8 @@ abstract class Database implements DatabaseOperations {
         $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // allows LIMIT //nechat?
     }
 
+    public function
+
     public function fetchBy($field, $value) {
         $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE ' . $field . ' = :value';
         $statement = $this->pdo->prepare($sql);

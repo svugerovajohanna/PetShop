@@ -1,8 +1,12 @@
 <?php 
 
+require 'db.php';
 
+session_start();
 
 $errors = [];
+
+
 // kontrola, jestli byl formulář vyplněn
 
 $submittedForm = !empty($_POST);
@@ -15,8 +19,11 @@ if ($submittedForm) {
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
     $paswdConfirm = htmlspecialchars(trim($_POST['paswdConfirm']));
+    $street = htmlspecialchars(trim($_POST['street']));
+    $houseNumber = htmlspecialchars(trim($_POST['houseNumber']));
+    $city= htmlspecialchars(trim($_POST['city']));
+    $psc= htmlspecialchars(trim($_POST['psc']));
     
-   
 
     // neprázdné jméno
     if (!$firstName) {
@@ -48,15 +55,73 @@ if ($submittedForm) {
         }
     }
     // heslo dlouhé alespoň 8 znaků
-    if ($password !== $paswdConfirm || strlen($paswdConfirm) < 8 || strlen($paswdConfirm) < 8) {
-        $errors['password'] = 'Zadejte platné heslo';
-        $errors['paswdConfirm'] = 'Please use a valid password';
+    if ( strlen($password) < 8 ) {
+        $errors['password'] = 'Zadejte platné heslo!';
     }
 
-    if (!count($errors)) {
-        $alertType = 'alert-success';
-         $alertMessages = ['Registrace proběhla úspěšne'];
+    //shoda hesla a jeho opakování
+    if ($password !== $paswdConfirm) {
+        $errrors['pswdConfirm'] = "Zadaná hesla se neshodují!";
     }
+
+    //neprázdná ulice
+    if(!$street) {
+        $errors['street'] = "Zadejte ulici!";
+    }
+
+    //neprázné popisné číslo, 1-5 čísel
+    if(!$houseNumber) {
+        $errors['houseNumber'] = "Zadjte číslo popisné!";
+    }
+    else {
+        if(!preg_match('/^[0-9]{1,5}$/', $houseNumber)) {
+            $errors['houseNumber'] = 'Zadejte číslo popisné ve správném tvaru!';
+        }
+    }
+
+    //neprázdné PSC, pět čísel
+    if(!$psc) {
+        $errors['psc'] = "Zadejte PSČ!";
+    }
+    else {
+        if(!preg_match('/^[0-9]{5}$/', $psc)) {
+            $errors['psc'] = 'Zadejte PSČ ve správném tvaru!';
+        }
+    }
+
+    //neprázdné měasto
+    if(!$city) {
+        $errors['city'] = "Vyplňtě město!";
+    }
+
+
+    if(!count($errors)){
+        if($alreadyRegistred = $usersDB->fetchBy('email', $email)){ //existuje mail v databázi?
+            $errors['email'] = "Tento email je už zaregistrován!";
+        }
+        else {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $usersDB->create([
+            'first_name'=>$firstName,
+            'last_name'=>$lastName,
+            'password'=>$hashedPassword,
+            'phone_number'=>$phoneNumber,
+            'email'=>$email,
+            'street'=>$street,
+            'house_number'=>$houseNumber,
+            'city'=>$city,
+            'post_code'=>$psc]);
+            $user = $usersDB->fetchBy('email', $email);
+            if(!$user){
+                die('Při registraci nastala chyba');
+            }
+            $_SESSION['userID'] = $user[0]['user_id'];
+            $_SESSION['email'] = $user[0]['email'];
+        }
+
+    }
+    
     // if no errors: insert the new user to db
    
     // if no errors: send confirmation email
@@ -83,7 +148,14 @@ if ($submittedForm) {
                   <p><?php echo $error; ?></p>
                   <?php endforeach ?>
             </div>
+
          <?php endif ?>
+         
+         <?php if ($submittedForm && !count($errors)): ?>
+         <div class="alert alert-success">
+         <p><?php echo "Registrace proběhla úspešně!"; ?></p>
+            </div>
+         <?php endif; ?>
          
 
         <div class="form-group">
@@ -105,7 +177,7 @@ if ($submittedForm) {
         <div class="form-group">
             <label>Telefonní číslo</label>
             <input class="form-control" name="phoneNumber" value="<?php echo @$phoneNumber; ?>">
-            <small>Telefonní číslo zadávejte bez předvolby</small>
+            <small>Telefonní číslo zadávejte bez předvolby a bez mezer</small>
         </div>
 
         <div class="form-group">
@@ -122,22 +194,22 @@ if ($submittedForm) {
 
         <div class="form-group">
             <label>Ulice</label>
-            <input class="form-control">
+            <input class="form-control" name="street" value="<?php echo @$street; ?>">
         </div>
 
         <div class="form-group">
             <label>Číslo popisné</label>
-            <input class="form-control">
+            <input class="form-control" name="houseNumber" value="<?php echo @$houseNumber; ?>">
         </div>
 
         <div class="form-group">
             <label>Město</label>
-            <input class="form-control">
+            <input class="form-control" name="city" value="<?php echo @$city; ?>">
         </div>
 
         <div class="form-group">
             <label>PSČ</label>
-            <input class="form-control">
+            <input class="form-control" name="psc" value="<?php echo @$psc; ?>">
             <small>PSČ zadávejte bez mezer</small>
         </div>
 
