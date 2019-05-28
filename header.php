@@ -49,10 +49,10 @@
             <?php endif; ?>
             <?php if ($_SESSION['role'] == "adm"): ?>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
-              <a class="nav-link" href="#">Přidat produkt</a>
+              <a class="nav-link" href="new_product.php">Přidat produkt</a>
             </li>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
-              <a class="nav-link" href="#">Správa uživatelů</a>
+              <a class="nav-link" href="user_administration.php">Správa uživatelů</a>
             </li>
             <?php endif; ?>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">

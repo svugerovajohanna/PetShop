@@ -128,7 +128,7 @@ if ($submittedForm) {
                     'password'=>$hashedPassword]);
             }
 
-            header('Location: user_profile.php');
+            header('Location: user_profile?change.php');
             die();
         }
     }

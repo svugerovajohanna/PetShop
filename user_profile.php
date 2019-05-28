@@ -5,10 +5,24 @@ require 'login_required.php';
 
 require 'header.php';
 
+$messages = [];
+
+if(isset($_GET['changed'])){
+    array_push($messages, 'Role uživatele byla změněna');
+}
+
 
 ?>
 
 <main class="container">
+<?php if(count($messages)): ?>
+
+<div class="alert alert-success">
+        <?php foreach($messages as $message): ?>
+        <p><?php echo $message; ?></p>
+        <?php endforeach ?>
+</div>
+<?php endif ?>
     <h2>Můj profil</h2>
     <table class="table table-hover">
     <tr class="table-light">

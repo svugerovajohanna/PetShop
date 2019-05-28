@@ -108,6 +108,8 @@ $currentUser = $usersDB->fetchBy('id', $_SESSION['userID']);
       <div class="card-footer text-center">
         <?php if($role == "adm"): ?>
                 <p class="small">Na skladě: <?php echo $product['stock']?><p>
+                <a href="./edit_product.php?product=<?php echo $product['product_id'] ?>"><button type="button" class="btn btn-primary">Upravit</button></a>
+                <a href="./delete_product.php?product=<?php echo $product['product_id'] ?>"><button type="button" class="btn btn-primary">Smazat</button></a>
             <? else: ?>
 
             <?php if($role == "cust"): ?>
