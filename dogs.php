@@ -64,6 +64,13 @@ else{ //všechny produkty, index
 $products = $statement->fetchAll();
 
 
+
+$currentUser = $usersDB->fetchBy('id', $_SESSION['userID']);
+	if($currentUser){
+	  $role = $currentUser[0]['role'];
+	}
+
+
 ?>
 <main class="container">
 <h2>Potřeby pro psy</h2>
@@ -99,13 +106,21 @@ $products = $statement->fetchAll();
       </div>
       
       <div class="card-footer text-center">
-                <!-- upravit pro různé role-->
-            <?php if($product['stock']>0):?>
-            <a href="./buy.php?product=<?php echo $product['product_id'] ?>"><button type="button" class="btn btn-secondary">Přidat do košíku</button></a>
-            <?php endif;?>
-            <?php if($product['stock']==0):?>
-                <p class>Produkt není k dispozici.</p>
-            <?php endif;?>
+        <?php if($role == "adm"): ?>
+                <p class="small">Na skladě: <?php echo $product['stock']?><p>
+            <? else: ?>
+
+            <?php if($role == "cust"): ?>
+                <?php if($product['stock']>0):?>
+                    <a href="./buy.php?product=<?php echo $product['product_id'] ?>"><button type="button" class="btn btn-secondary">Přidat do košíku</button></a>
+                <?php endif;?>
+                <?php if($product['stock']==0):?>
+                    <p>Produkt není k dispozici.</p>
+                 <?php endif;?>
+            
+            <?php endif; ?>
+                
+            <?php endif; ?>
 
         </div> 
     </div>
