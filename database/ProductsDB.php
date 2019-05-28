@@ -12,15 +12,16 @@ class ProductsDB extends Database {
  
     public function create($args){
         $sql = 'INSERT INTO ' . $this->tableName . 
-            '(product_name, price, image, description, category)
-            VALUES (:product_name, :price, :image, :description, :category)';
+            '(product_name, price, image, description, category, stock)
+            VALUES (:product_name, :price, :image, :description, :category, :stock)';
         $statement = $this->pdo->prepare($sql);
         $statement->execute([
             'product_name' => $args['product_name'], 
             'price' => $args['price'],
             'image' => $args['image'],
             'description' => $args['description'],
-            'category' => $args['category']
+            'category' => $args['category'],
+            'stock' => $args['stock']
         ]);
     }
 }

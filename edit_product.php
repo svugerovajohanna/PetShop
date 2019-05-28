@@ -34,10 +34,10 @@ if ($submittedForm) {
     if (strlen($_POST['description'])>1000) {
         $errors[] = 'Příliš dlouhý popis!';
     }
-    if (!preg_match('/^[0-9]{5}$/', $_POST['price']) ) {
+    if (!preg_match('/^[0-9]{0,5}$/', $_POST['price']) ) {
         $errors[] = 'Cena musí být celé číslo v maximálním řádu tísíců!';
     }
-    if (!preg_match('/^[0-9]{5}$/', $_POST['stock']) ) {
+    if (!preg_match('/^[0-9]{0,5}$/', $_POST['stock']) ) {
         $errors[] = 'Množství na skladě musí být celé číslo v maximálním řádu tísíců!';
     }
 

@@ -8,7 +8,7 @@ require_once __DIR__.'/database/ProductsDB.php';
 
 $usersDB = new UsersDB('users');
 $categoriesDB = new CategoriesDB('categories');
-$productsDB = new CategoriesDB('products');
+$productsDB = new ProductsDB('products');
 
 
 ?>
