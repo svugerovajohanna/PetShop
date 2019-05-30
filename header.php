@@ -23,7 +23,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.php"><img src=ikona.png height="50" wight="50" alt="ikona Pet Shopu"><h1>PetShop</h1></a>
+      <a class="navbar-brand" href="index.php"><img src=ikona.png height="50" width="50" alt="ikona Pet Shopu"><h1>PetShop</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,6 +46,9 @@
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
               <a class="nav-link" href="user_profile.php">Můj profil</a>
             </li>
+            <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
+              <a class="nav-link" href="orders.php">Moje objednávky</a>
+            </li>
             <?php endif; ?>
             <?php if ($_SESSION['role'] == "adm"): ?>
             <li class="nav-item<?php echo strpos($_SERVER['REQUEST_URI']) ? ' active' : '' ?>">
@@ -63,7 +66,6 @@
               <a class="nav-link" href="login.php"><b>Přihlášení</b></a>
             </li>
           <?php endif; ?>
-          </li>
         </ul>
       </div>
     </div>

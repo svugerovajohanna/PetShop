@@ -19,7 +19,7 @@
 	if (!$products){
 	    die("Produkt nenalezen!");
 	}
-	$_SESSION['cart'][] = $products['product_id'];
+    $_SESSION['cart'][] = $products['product_id'];
 	header('Location: cart.php');
 	die();
 	

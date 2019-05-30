@@ -7,6 +7,8 @@ require 'header.php';
 
 
 
+
+
 //výběr kategorií pro kočku
 $sql = 'SELECT * FROM categories WHERE animal="cat"'; //ORDER BY name
 $statement = $categoriesDB->getPDO()->prepare($sql);
@@ -71,6 +73,7 @@ $currentUser = $usersDB->fetchBy('id', $_SESSION['userID']);
 ?>
 <main class="container">
 <h2>Potřeby pro kočky</h2>
+
 
 <div class="row">
 
