@@ -41,7 +41,7 @@ $statement->execute([
 $totalPrice = $statement->fetchColumn();
 
 if(isset($totalPrice)){
-    $ordersDB->updateBy(['order_code'=>$orderID], ['total_price'=>$totalPrice]);
+    $ordersDB->updateBy(['order_id'=>$orderID], ['total_price'=>$totalPrice]);
     unset($_SESSION['cart']);
     
     header('Location: index.php');
